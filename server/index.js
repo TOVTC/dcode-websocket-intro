@@ -17,5 +17,16 @@ wss.on("connection", ws => {
     ws.on("close", () => {
         console.log("Client has disconnected!");
     });
+
+    // once a basic connection is established, we can listen for messages
+    // data refers to the actual data that the client has sent to the server
+    ws.on("message", data => {
+        console.log(`Client has sent us: ${data}`);
+
+        // we can also use websocket to send data to our client
+        // here, we're just taking the data that was sent to us and transforming it before sending it back
+        ws.send(data.toString().toUpperCase());
+    });
+
 });
 
