@@ -23,6 +23,21 @@
         // add an event listener for whenever we are connected to our serverside
         ws.addEventListener("open", () => {
             console.log("We are connected!");
+
+            // once we are connected to our websocket server, we are safe to start sending data
+            ws.send("Hey, how's it going?");
+        });
+
+        // // add an event listener to receive messages from the server
+        // // data from the server is received as a Message Event object
+        // ws.addEventListener("message", event => {
+        //     console.log(event);
+        // });
+
+        
+        // add an event listener to receive messages from the server, with object destructuring
+        ws.addEventListener("message", ({data}) => {
+            console.log(data);
         });
     </script>
 </body>
